@@ -1,0 +1,117 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="mb-4">Weather Forecast</h1>
+      <form (ngSubmit)="getWeather()" #weatherForm="ngForm">
+        <div class="mb-3 ">
+          <input type="text" class="form-control" placeholder="Enter city" [(ngModel)]="city" name="city"
+            #cityInput="ngModel" [ngClass]="{'is-invalid': cityInput.invalid && cityInput.touched}" required>
+        </div>
+        <div class="row">
+          <div class="col-md-12 buttonFlex">
+            <div class="col-md-9 ">
+              <button type="submit" class="btn btn-primary w-100">Get Forecast</button>
+            </div>
+            <div class="col-md-2 offset-md-1 ">
+              <button type="button" (click)="clearTextField()" class="btn btn-dark w-100">Clear </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <app-modal [(visible)]="showDialog" [value]="city"></app-modal>
+
+  <div class="container-fluid bg-light py-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body" *ngIf="state">
+            <!-- Header -->
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-geo-alt text-primary me-2"></i>
+                <h5 class="mb-0">{{ currentWeather.name }}</h5>
+              </div>
+              <small class="text-muted display-6">
+                {{ currentWeather.dt * 1000 | date : "EEE, MMM d" }}
+              </small>
+            </div>
+
+            <!-- Current Weather -->
+            <div class="text-center mb-4">
+              <p class="lead">
+                <b>{{ currentWeather.weather[0].description }}</b>
+              </p>
+              <img [src]="
+                  'http://openweathermap.org/img/w/' +
+                  currentWeather.weather[0].icon +
+                  '.png'
+                " alt="Weather Icon" />
+              <h1 class="display-1 mb-0">
+                {{ currentWeather.main.temp | number : "1.0-0" }}°C
+              </h1>
+              <small class="display-7 px-4">H:{{
+                currentWeather.main.temp_max | number : "1.0-0"
+                }}°C</small>
+              <small class="display-7">L:{{
+                currentWeather.main.temp_min | number : "1.0-0"
+                }}°C</small>
+            </div>
+
+            <!-- Weather Details -->
+            <div class="row text-center mb-4">
+              <div class="col">
+                <div class="card bg-primary text-white p-2">
+                  <i class="bi bi-moisture fs-4"></i>
+                  <small>{{ currentWeather.main.humidity }}%</small>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card bg-primary text-white p-2">
+                  <i class="bi bi-wind fs-4"></i>
+                  <small>
+                    {{
+                    currentWeather.wind.speed | number : "1.1-1"
+                    }}
+                    km/h</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Temperature Graph -->
+            <div class="mb-4">
+              <!-- Insert your graph component here -->
+              <div class="bg-light p-3 rounded">
+                <b class="text-center py-2 display-6">
+                  Temperature Graph Placeholder
+                </b>
+                <div class="mb-4">
+                  <canvas #hourlyTempCanvas></canvas>
+                </div>
+              </div>
+
+            </div>
+            <div class="temperature-graph">
+              <div class="mb-4">
+                <canvas #tempRangeCanvas></canvas>
+              </div>
+
+            </div>
+
+            <!-- 24 Hour Forecast -->
+            <app-forcast24-hour [hourlyForecast]="hourlyForecast" />
+
+            <!-- 7 Day Forecast -->
+            <app-forcast7-day [dailyForecast]="dailyForecast" />
+          </div>
+        </div>
+        <div *ngIf="!state">
+          <h3>Code: {{error.code}}</h3>
+          <h5>Message: {{error.message}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

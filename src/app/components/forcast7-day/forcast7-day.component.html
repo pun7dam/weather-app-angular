@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-header">
+    <h2>7 Day Forecast</h2>
+  </div>
+  <div class="card-body">
+    <div class="row text-center">
+      <div class="col-md-4 py-2" *ngFor="let day of dailyForecast">
+        <div class="card p-2">
+          <small>{{ day.dt * 1000 | date : "EEE, MMM d" }}</small>
+          <img [src]="
+              'http://openweathermap.org/img/w/' +
+              day.weather[0].icon +
+              '.png'
+            " alt="Weather Icon" />
+          <small class="display-6">{{ day.main.temp | number : "1.0-0" }}°C</small>
+          {{ day.weather[0].description }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

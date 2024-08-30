@@ -1,0 +1,13 @@
+<div *ngIf="visible" class="overlay" (click)="close()"></div>
+<div class="dialog " *ngIf="visible">
+  <div class="modal-content rounded-0 ">
+    <div class="modal-body alert alert-dark">
+      <div class="d-flex justify-content-center align-items-center my-3">
+        <p class=" mx-4" *ngIf="!value">
+          <b>City name is required!.</b>
+        </p>
+        <button *ngIf="closable" (click)="close()" aria-label="Close" class="dialog__close-btn ">X</button>
+      </div>
+    </div>
+  </div>
+</div>
