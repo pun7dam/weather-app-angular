@@ -27,7 +27,19 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 
+"# weather-app-angular snapshots" 
+
+![WeatherForcast](https://github.com/user-attachments/assets/957f1565-4080-4fc9-8b24-14264c87b34b)
+![graphTemperature](https://github.com/user-attachments/assets/c7d33701-6dd5-4ce6-b14b-6734ab4d77e5)
+![Screenshot 2024-08-30 221644](https://github.com/user-attachments/assets/48938e38-04aa-4535-b845-da19e9a3a900)
+![7 day forcast](https://github.com/user-attachments/assets/975ca5c9-f3c8-4470-8f23-daa02dae5949)
 
 
 
-"# weather-app-angular" 
+
+
+
+
+
+
+
